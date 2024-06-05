@@ -23,6 +23,7 @@ export class AuthGuard implements CanActivate {
         text: "You are not allowed to do it!"
       });
       return false;
+      
     }
   }
 }
