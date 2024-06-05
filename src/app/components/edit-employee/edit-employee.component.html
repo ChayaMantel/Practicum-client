@@ -1,0 +1,101 @@
+<h1 class="title">Edit Employee</h1>
+<div class="employee-container">
+    <div class="employee-form">
+        <form [formGroup]="employeeForm">
+            <div class="form-group">
+                <label for="identity">Position</label>
+                <input type="text" id="identity" formControlName="identity" class="form-control">
+
+                @if (employeeForm.controls['identity'].errors) {
+                    @if(employeeForm.controls['identity'].errors['required']) {
+                        <p class="text-danger">ID is required</p>
+                    }
+                    @if(employeeForm.controls['identity'].errors['maxlength']) {
+                        <p class="text-danger">ID is too long</p>
+                    }
+                    @if(employeeForm.controls['identity'].errors['minlength']) {
+                        <p class="text-danger">ID is too short</p>
+                    }
+                }
+            </div>
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" formControlName="firstName" class="form-control">
+
+                @if (employeeForm.controls['firstName'].errors) {
+                    @if(employeeForm.controls['firstName'].errors['required']) {
+                        <p class="text-danger">First name is required</p>
+                    }
+                    @if(employeeForm.controls['firstName'].errors['pattern']) {
+                        <p class="text-danger">First name should contain only letters</p>
+                    }
+                }
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" id="lastName" formControlName="lastName" class="form-control">
+
+                @if (employeeForm.controls['lastName'].errors) {
+                    @if(employeeForm.controls['lastName'].errors['required']) {
+                        <p class="text-danger">Last name is required</p>
+                    }
+                    @if(employeeForm.controls['lastName'].errors['pattern']) {
+                        <p class="text-danger">Last name should contain only letters</p>
+                    }
+                }
+            </div>
+            <div class="form-group">
+                <label for="startOfWork">Date start of work</label>
+                <input type="date" id="startOfWork" formControlName="startOfWork" class="form-control">
+
+                @if (employeeForm.controls['startOfWork'].errors) {
+                    @if(employeeForm.controls['startOfWork'].errors['required']) {
+                        <p class="text-danger">Date start of work is required</p>
+                    }
+                }
+            </div>
+            <div class="form-group">
+                <label for="birthDate">birthDate</label>
+                <input type="date" id="birthDate" formControlName="birthDate" class="form-control">
+
+                @if (employeeForm.controls['birthDate'].errors) {
+                    @if(employeeForm.controls['birthDate'].errors['required']) {
+                        <p class="text-danger">Birthdate is required</p>
+                    }
+                }
+            </div>
+            <div class="form-group">
+                <label for="gender">Gender</label>
+                <select id="gender" formControlName="gender" class="form-control">
+                    <option value="male">male</option>
+                    <option value="female">female</option>
+                </select>
+
+                @if (employeeForm.controls['gender'].errors) {
+                    @if(employeeForm.controls['gender'].errors['required']) {
+                        <p class="text-danger">Gender is required</p>
+                    }
+                }
+            </div>
+        </form>
+
+        @for(position of employeeForm.controls['employeePositions'].value; let i=$index ;track position?.id) {
+            <div class ="position">
+                <button class="btn btn-sm btn-info" (click)="updatePosition(position,i)">
+                    <i class="bi bi-pencil"></i> Edit
+                </button>
+                <button class="btn btn-sm btn-danger" (click)="deletePosition(i)">
+                    <i class="bi bi-trash"></i> Delete
+                </button>
+                <app-position-details [position]="position"></app-position-details>
+            </div>
+        }
+        <button class="btn btn-primary add" (click)="addPosition()">Add new position</button>
+        <div class="modal-footer">
+            <button type="button" (click)="updateEmployee()" [disabled]="employeeForm.invalid" class="btn btn-primary">
+                Save
+            </button>
+            <button type="button" class="btn btn-secondary " (click)="close()">Cancel</button>
+        </div>
+    </div>
+</div>

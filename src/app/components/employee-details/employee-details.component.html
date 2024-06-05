@@ -1,0 +1,14 @@
+<td class="additional-details">{{ employee.firstName }}</td>
+<td class="additional-details">{{ employee.lastName }}</td>
+<td class="additional-details">{{ employee.identity }}</td>
+<td class="additional-details">{{ employee.startOfWork | date:"shortDate"}}</td>
+<td class="additional-details">
+  <button class="btn btn-sm btn-info" (click)="onEditClick(employee)">
+    <i class="bi bi-pencil"></i> Edit
+  </button>
+</td>
+<td class="additional-details">
+  <button class="btn btn-sm btn-danger" (click)="onDeleteClick(employee)">
+    <i class="bi bi-trash"></i> Delete
+  </button>
+</td>

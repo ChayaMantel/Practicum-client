@@ -1,0 +1,57 @@
+@import "bootstrap/dist/css/bootstrap.css";
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.footer {
+    margin-top: auto;
+    text-align: center;
+    background-color: #f8f9fa;
+    color: #555;
+    padding: 20px 0;
+    width: 100%;
+}
+.user-profile {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.profile-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: 2px solid #007bff;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+   
+}
+
+.profile-button:hover {
+    background-color: transparent;
+    color: #007bff;
+}
+
+.profile-text {
+    text-transform: uppercase;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

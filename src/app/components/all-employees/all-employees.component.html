@@ -1,0 +1,55 @@
+<div class="user">
+  @if(currentUser != null) {
+  <span class="btn btn-primary orange">User Name: {{ currentUser }}</span>
+  }
+  @else {
+  <span class="btn btn-primary orange">User Name: undefined</span>
+  }
+</div>
+<h1 class="title">Active Employees</h1>
+<div class="container mt-4">
+  <form [formGroup]="filterForm">
+    <div class="col-md-5 mx-auto">
+      <div class="input-group">
+        <input class="form-control border-end-0 border" type="search" value="search" id="example-search-input" placeholder="search Employee"
+          formControlName="filter">
+        <span class="input-group-append">
+          <button class="btn btn-outline-secondary bg-white border-start-0 border-bottom-0 border" type="button">
+            <i class="bi bi-search"></i>
+          </button>
+        </span>
+      </div>
+    </div>
+  </form>
+
+  <div class="container mt-2">
+    <div class="row justify-content-center">
+        <div class="col-md-2 mb-2">
+            <button class="btn btn-success btn-block" (click)="exportToExcel()">Export to Excel</button>
+        </div>
+        <div class="col-md-2 mb-2">
+            <button class="btn btn-primary btn-block" (click)="addNewClick()">Add a new Employee</button>
+        </div>
+    </div>
+</div>
+
+  <table class="table table-bordered table-hover">
+    <thead class="bg-primary text-light">
+      <tr class="tr">
+        <th class="additional-details">First Name</th>
+        <th class="additional-details">Last Name</th>
+        <th class="additional-details">ID</th>
+        <th class="additional-details">Date of Entrance</th>
+        <th class="additional-details">Edit</th>
+        <th class="additional-details">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (employee of filteredEmployees(); track employee.id) {
+      @if (employee.active == true) {
+      <tr app-employee-details [employee]="employee"></tr>
+      }
+      }
+    </tbody>
+  </table>
+</div>

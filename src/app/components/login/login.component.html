@@ -1,0 +1,26 @@
+<div class="login-container">
+    <div class="login-form">
+        <form [formGroup]="loginForm">
+          
+            <div class="mb-3">
+                <label for="lastName">Last Name</label>
+                <input type="text" id="lastName" formControlName="lastName" class="form-control">
+
+                @if (loginForm.controls['lastName'].errors && loginForm.controls['lastName'].touched) {
+                    <p class="text-danger">Last Name is required</p>
+                }
+            </div>
+            <div class="mb-3">
+                <label for="identity">Identity</label>
+                <input type="text" id="identity" formControlName="identity" class="form-control">
+
+                @if (loginForm.controls['identity'].errors && loginForm.controls['identity'].touched) {
+                    <p class="text-danger">Identity is required</p>
+                }
+            </div>
+            <button type="submit" (click)="onSubmit()" [disabled]="loginForm.invalid"
+                class="btn btn-primary">Login</button>
+
+        </form>
+    </div>
+</div>

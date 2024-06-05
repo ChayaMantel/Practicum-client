@@ -1,0 +1,63 @@
+<h1 class="title">Edit Position </h1>
+<div class="position-container">
+    <div class="position-form">
+        <form [formGroup]="positionForm">
+            <label for="positionId">Id</label>
+            <select id="positionId" formControlName="positionId" class="form-control">
+                @for( position of positionList ; track position.id){
+                <option [disabled]="isDuplicate(position.id)" value={{position.id}}>{{position.name}}</option>
+                }
+            </select>
+
+            @if (positionForm.controls['positionId'].errors ) {
+
+            @if(positionForm.get('positionId')?.errors?.['required']){
+
+            <p class="text-danger">Position is required</p> 
+
+            }
+         
+            }
+
+            <label for="isAdministrative">Is Admin</label>
+            <select id="isAdministrative" formControlName="isAdministrative" class="form-control">
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+
+            @if (positionForm.controls['isAdministrative'].errors) {
+
+            @if(positionForm.controls['isAdministrative'].errors['required']){
+
+            <p class="text-danger">Gender is required</p>
+
+            }
+
+            }
+
+            <label for="dateOfEntrance">Date Entrance</label>
+
+            <input type="date" id="dateOfEntrance" formControlName="dateOfEntrance" class="form-control">
+
+            @if (positionForm.controls['dateOfEntrance'].errors) {
+
+            @if(positionForm.controls['dateOfEntrance'].errors['required']){
+
+            <p class="text-danger">Date Entrance is required</p>
+
+            }
+            @if(positionForm.controls['dateOfEntrance'].errors['dateAfterOrEqual']){
+
+            <p class="text-danger">date of entrance is in valid</p>
+
+            }
+
+            }
+            <button type="button" (click)="updatePosition()" [disabled]="positionForm.invalid"
+                class="btn btn-primary">Save</button>
+        </form>
+
+
+
+    </div>
+</div>

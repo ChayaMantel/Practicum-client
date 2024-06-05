@@ -1,0 +1,87 @@
+<h1 class="title">Add new Employee</h1>
+<div class="employee-container">
+  <div class="employee-form">
+    <form [formGroup]="employeeForm">
+
+      <label for="identity">ID</label>
+      <input type="text" id="identity" formControlName="identity" class="form-control">
+
+      @if (employeeForm.controls['identity'].errors) {
+        @if(employeeForm.controls['identity'].errors['required']) {
+          <p class="text-danger">ID is required</p>
+        }
+        @if(employeeForm.controls['identity'].errors['maxlength']) {
+          <p class="text-danger">ID is too long</p>
+        }
+        @if(employeeForm.controls['identity'].errors['minlength']) {
+          <p class="text-danger">ID is too short</p>
+        }
+      }
+
+      <label for="firstName">First Name</label>
+      <input type="text" id="firstName" formControlName="firstName" class="form-control">
+
+      @if (employeeForm.controls['firstName'].errors) {
+        @if(employeeForm.controls['firstName'].errors['required']) {
+          <p class="text-danger">First name is required</p>
+        }
+        @if(employeeForm.controls['firstName'].errors['pattern']) {
+          <p class="text-danger">First name should contain only letters</p>
+        }
+      }
+
+      <label for="lastName">Last Name</label>
+      <input type="text" id="lastName" formControlName="lastName" class="form-control">
+
+      @if (employeeForm.controls['lastName'].errors) {
+        @if(employeeForm.controls['lastName'].errors['required']) {
+          <p class="text-danger">Last name is required</p>
+        }
+        @if(employeeForm.controls['lastName'].errors['pattern']) {
+          <p class="text-danger">Last name should contain only letters</p>
+        }
+      }
+
+      <label for="startOfWork">Date start of work</label>
+      <input type="date" id="startOfWork" formControlName="startOfWork" class="form-control">
+
+      @if (employeeForm.controls['startOfWork'].errors) {
+        @if(employeeForm.controls['startOfWork'].errors['required']) {
+          <p class="text-danger">Date start of work is required</p>
+        }
+      }
+
+      <label for="birthDate">Birth Date</label>
+      <input type="date" id="birthDate" formControlName="birthDate" class="form-control">
+
+      @if (employeeForm.controls['birthDate'].errors) {
+        @if(employeeForm.controls['birthDate'].errors['required']) {
+          <p class="text-danger">Birthdate is required</p>
+        }
+      }
+
+      <label for="gender">Gender</label>
+      <select id="gender" formControlName="gender" class="form-control">
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
+
+      @if (employeeForm.controls['gender'].errors) {
+        @if(employeeForm.controls['gender'].errors['required']) {
+          <p class="text-danger">Gender is required</p>
+        }
+      }
+
+      @for(position of employeePositions; track position.id) {
+        <app-position-details [position]="position"></app-position-details>
+      }
+      <button class="btn btn-primary" (click)="addPosition()">Add new position</button>
+
+    </form>
+
+    <div class="modal-footer">
+      <button type="button" (click)="save()" [disabled]="employeeForm.invalid" class="btn btn-primary">Save</button>
+      <button type="button" class="btn btn-secondary" (click)="closeAdd()">Cancel</button>
+    </div>
+  </div>
+</div>
